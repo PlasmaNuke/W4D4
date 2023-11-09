@@ -31,15 +31,31 @@ list2 = [-5, -1, -3]
 
 
 
-def largest_contiguous_subsum(list) #n^3
-    result = [] #1
+# def largest_contiguous_subsum(list) #n^3
+#     result = [] #1
 
-    (0...list.size).each do |idx1| # n
-        (idx1...list.size).each do |idx2| #n (3), (2), (1)
-            result << list[idx1..idx2] # n
+#     (0...list.size).each do |idx1| # n
+#         (idx1...list.size).each do |idx2| #n (3), (2), (1)
+#             result << list[idx1..idx2] # n
+#         end
+#     end
+#     result.map {|arr| arr.sum}.max # n
+# end
+
+def largest_contiguous_subsum(list)
+    current_sum = 0
+    largest_sum = list.first
+
+    list.each do |ele|
+        current_sum += ele
+        if current_sum > largest_sum
+            largest_sum = current_sum
+        elsif current_sum < 0
+            current_sum = 0
         end
     end
-    result.map {|arr| arr.sum}.max # n
+    largest_sum
+    
 end
 
 puts largest_contiguous_subsum(list)
