@@ -20,3 +20,25 @@ end
 
 puts my_min_linear(list)
 puts my_min(list)
+
+
+
+
+list = [5, 3, -7]
+list1 = [2, 3, -6, 7, -6, 7]
+list2 = [-5, -1, -3]
+
+def largest_contiguous_subsum(list)
+    result = []
+
+    (0...list.size).each do |idx1|
+        (idx1...list.size).each do |idx2|
+            result << list[idx1..idx2]
+        end
+    end
+    result.map {|arr| arr.sum}.max
+end
+
+puts largest_contiguous_subsum(list)
+puts largest_contiguous_subsum(list1)
+puts largest_contiguous_subsum(list2)
